@@ -2,6 +2,7 @@
 
 * Download [Vagrant](https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_x86_64.msi)
 * Download [Virtualbox](https://download.virtualbox.org/virtualbox/6.1.30/VirtualBox-6.1.30-148432-Win.exe)
+* Download [Virtualbox Extension](https://download.virtualbox.org/virtualbox/6.1.30/Oracle_VM_VirtualBox_Extension_Pack-6.1.30.vbox-extpack)
 * run `powershell -ep bypass`
 * cd DetectionLab\Vagrant folder
 * run `.\prepare.sh`
@@ -45,12 +46,13 @@ The results indicate a Windows computer was infected at your company's Japan fie
 
 For this traffic analysis exercise, please answer the following questions:
 
-What is the MAC address, IP address, and host name of the infected Windows computer?
-What is the date and time (in UTC) the computer was infected?
-Based on the Snort and Suricata alerts, what was the computer infected with?
-Based on indicators from first HTTP GET request, determine how the computer was infected.
-Based on the previous answer, what is the SHA256 hash for the file that probably infected the computer?
-The pcap contains 3 Windows executable files sent over HTTP.  Export them from the pcap.  What are the SHA256 file hashes of the those 3 files?
+* What is the MAC address, IP address, and host name of the infected Windows computer?
+* What is the date and time (in UTC) the computer was infected?
+* Based on the Snort and Suricata alerts, what was the computer infected with?
+* Based on indicators from first HTTP GET request, determine how the computer was infected.
+* Based on the previous answer, what is the SHA256 hash for the file that probably infected the computer?
+* The pcap contains 3 Windows executable files sent over HTTP.  Export them from the pcap.  What are the SHA256 file hashes of the those 3 files?
+
 Note:  Times for the Suricata alerts are not correct, because they were generated using tcpreplay some hours after the original infection.
 
 You feel bad for the businessman who infected his computer at the company's Japan field office.  Rumor has it he's been forced to use a tablet while his computer is getting fixed.
@@ -59,6 +61,8 @@ PCAP of traffic is located on `studbox` machine in `/home/vagrant/2017-06-28-tra
 Snort and suricata alerts `/home/vagrant/2017-06-28-traffic-analysis-exercise-Suricata-alerts.txt` `/home/vagrant/2017-06-28-traffic-analysis-exercise-Snort-alerts.txt`
 
 # Lab4
+
+
 
 # Lab5
 
@@ -75,6 +79,4 @@ Exploit vulnerablity in apache web server.
 
 # Lab8
 
-
-
-# Lab9
+Inspect PCAP located at `/home/vagrant/PCAP_sample/Command and Control/cmds over dns txt queries and reponses.pcap` identify how communication channel was established using DNS records.
