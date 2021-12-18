@@ -1,20 +1,22 @@
 # Installation
 
-Download Vagrant
-[Vagrant](https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_x86_64.msi)
-[Virtualbox](https://download.virtualbox.org/virtualbox/6.1.30/VirtualBox-6.1.30-148432-Win.exe)
-run `powershell -ep bypass`
-cd DetectionLab\Vagrant folder
-run .\prepare.sh
-vagrant up --provider=virtualbox
+* Download [Vagrant](https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_x86_64.msi)
+* Download [Virtualbox](https://download.virtualbox.org/virtualbox/6.1.30/VirtualBox-6.1.30-148432-Win.exe)
+* run `powershell -ep bypass`
+* cd DetectionLab\Vagrant folder
+* run .\prepare.sh
+* `vagrant up --provider=virtualbox`
 
-#Infrastructure
+# Infrastructure
+
 ![Lab](./img/lab.jpg)
 
-#Lab1
+# Lab1
+
 Using velociraptor
 
-#Lab2
+# Lab2
+
 LEVEL 1 QUESTIONS:
 1) What is the IP address of the Windows VM that gets infected?
 2) What is the host name of the Windows VM that gets infected?
@@ -31,9 +33,10 @@ LEVEL 2 QUESTIONS:
 4) How many times was the payload delivered?
 5) Submit the pcap to VirusTotal and find out what snort alerts triggered.  What are the EK names are shown in the Suricata alerts?
 
-PCAP is located on studbox in /home/vagrant/lab2.pcap
+PCAP is located on `studbox` in `/home/vagrant/lab2.pcap`
 
-#Lab3
+# Lab3
+
 You work as a security analyst for a company with locations world-wide, and it recently opened a field office in Japan.
 
 On Tuesday 2017-06-27, you notice several high-priority alerts from two different Intrusion Detection Systems (IDS).  One IDS is running Snort using the Snort subscription ruleset, and the other is running Suricata using the EmergingThreats Pro ruleset.
@@ -52,19 +55,20 @@ Note:  Times for the Suricata alerts are not correct, because they were generate
 
 You feel bad for the businessman who infected his computer at the company's Japan field office.  Rumor has it he's been forced to use a tablet while his computer is getting fixed.
 
-PCAP of traffic is located on studbox machine in /home/vagrant/2017-06-28-traffic-analysis-exercise.pcap
-Snort and suricata alerts /home/vagrant/2017-06-28-traffic-analysis-exercise-Suricata-alerts.txt /home/vagrant/2017-06-28-traffic-analysis-exercise-Snort-alerts.txt
+PCAP of traffic is located on `studbox` machine in `/home/vagrant/2017-06-28-traffic-analysis-exercise.pcap`
+Snort and suricata alerts `/home/vagrant/2017-06-28-traffic-analysis-exercise-Suricata-alerts.txt` `/home/vagrant/2017-06-28-traffic-analysis-exercise-Snort-alerts.txt`
 
-#Lab4
+# Lab4
 
-#Lab5
+# Lab5
+
 Sensitive information of company called Super Secure Startup was leaked, find how it was possible.
-/home/vagrant/lab5.zip was decrypted find how hackers could extract it using publicly available information.
+`/home/vagrant/lab5.zip` located on `studbox` was decrypted find how hackers could extract it using publicly available information.
 
-#Lab6
+# Lab6
 
-#Lab7
+# Lab7
 
-#Lab8
+# Lab8
 
-#Lab9
+# Lab9
