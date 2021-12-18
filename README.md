@@ -4,7 +4,7 @@
 * Download [Virtualbox](https://download.virtualbox.org/virtualbox/6.1.30/VirtualBox-6.1.30-148432-Win.exe)
 * run `powershell -ep bypass`
 * cd DetectionLab\Vagrant folder
-* run .\prepare.sh
+* run `.\prepare.sh`
 * `vagrant up --provider=virtualbox`
 
 # Infrastructure
@@ -13,7 +13,7 @@
 
 # Lab1
 
-Using velociraptor
+Using velociraptor identify how WIN10 was compromised, inspect running processes did you notice something suspicious?
 
 # Lab2
 
@@ -67,8 +67,14 @@ Sensitive information of company called Super Secure Startup was leaked, find ho
 
 # Lab6
 
+From studbox using techniques learned during the course scan 192.168.56.0/24 enumerate services available and identify vulnerabilities that can be exploitable. Create report containing identified vulnerabilities and running services.
+
 # Lab7
 
+Exploit vulnerablity in apache web server.
+
 # Lab8
+
+
 
 # Lab9
