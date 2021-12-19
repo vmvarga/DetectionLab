@@ -62,7 +62,8 @@ Snort and suricata alerts `/home/vagrant/2017-06-28-traffic-analysis-exercise-Su
 
 # Lab4
 
-
+Using PurpleSharp utility located under `C:\Tools\PurpleSharp` and PurpleAD playbooks located in same folder launch attacks and investigate events in Splunk 
+`https://192.168.56.105:9999`. Techniques available in playbooks are from [Mitre ATT&CK](https://attack.mitre.org/techniques/enterprise/)
 
 # Lab5
 
@@ -71,7 +72,7 @@ Sensitive information of company called Super Secure Startup was leaked, find ho
 
 # Lab6
 
-From studbox using techniques learned during the course scan 192.168.56.0/24 enumerate services available and identify vulnerabilities that can be exploitable. Create report containing identified vulnerabilities and running services.
+From studbox using techniques learned during the course scan 192.168.56.0/24 enumerate services available and identify vulnerabilities that are exploitable. Create report containing identified vulnerabilities and running services.
 
 # Lab7
 
