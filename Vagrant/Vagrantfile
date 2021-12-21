@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
 
   config.vm.define "webserver" do |cfg|
-    cfg.vm.box = "bento/ubuntu1604"
+    cfg.vm.box = "bento/ubuntu-16.04"
     cfg.vm.hostname = "webserver"
     cfg.vm.provision :shell, path: "webserver_bootstrap.sh"
     cfg.vm.network :private_network, ip: "192.168.56.111", gateway: "192.168.56.1", dns: "8.8.8.8"
