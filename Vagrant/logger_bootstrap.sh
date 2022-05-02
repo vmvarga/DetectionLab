@@ -274,10 +274,10 @@ download_palantir_osquery_config() {
 }
 
 install_fleet_import_osquery_config() {
-  if [ -f "/opt/fleet" ]; then
+  if [ -d "/opt/fleet" ]; then
     echo "[$(date +%H:%M:%S)]: Fleet is already installed"
   else
-    cd /opt || exit 1
+    cd /opt && mkdir /opt/fleet || exit 1
 
     echo "[$(date +%H:%M:%S)]: Installing Fleet..."
     if ! grep 'fleet' /etc/hosts; then
@@ -291,11 +291,13 @@ install_fleet_import_osquery_config() {
     mysql -uroot -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'fleet';"
     mysql -uroot -pfleet -e "create database fleet;"
 
-    # Always download the latest release of Fleet
-    curl -s https://api.github.com/repos/fleetdm/fleet/releases | grep 'https://github.com' | grep "/fleet.zip" | cut -d ':' -f 2,3 | tr -d '"' | tr -d ' ' | head -1 | wget --progress=bar:force -i -
-    unzip fleet.zip -d fleet
-    cp fleet/linux/fleetctl /usr/local/bin/fleetctl && chmod +x /usr/local/bin/fleetctl
-    cp fleet/linux/fleet /usr/local/bin/fleet && chmod +x /usr/local/bin/fleet
+    # Always download the latest release of Fleet and Fleetctl
+    curl -s https://github.com/fleetdm/fleet/releases | grep _linux.tar.gz | grep href | grep -v orbit | grep -v fleetctl | cut -d '"' -f 2 | head -1 | sed 's#^#https://github.com#g'  | wget --progress=bar:force -i -
+    curl -s https://github.com/fleetdm/fleet/releases | grep _linux.tar.gz | grep href | grep fleetctl | cut -d '"' -f 2 | head -1 | sed 's#^#https://github.com#g' | wget --progress=bar:force -i -
+    tar -xvf fleet_*.tar.gz
+    tar -xvf fleetctl_*.tar.gz
+    cp fleetctl_*/fleetctl /usr/local/bin/fleetctl && chmod +x /usr/local/bin/fleetctl
+    cp fleet_*/fleet /usr/local/bin/fleet && chmod +x /usr/local/bin/fleet
 
     # Prepare the DB
     fleet prepare db --mysql_address=127.0.0.1:3306 --mysql_database=fleet --mysql_username=root --mysql_password=fleet
@@ -321,7 +323,7 @@ install_fleet_import_osquery_config() {
 
     fleetctl config set --address https://192.168.56.105:8412
     fleetctl config set --tls-skip-verify true
-    fleetctl setup --email admin@detectionlab.network --username admin --password 'admin123#' --org-name DetectionLab
+    fleetctl setup --email admin@detectionlab.network --name admin --password 'admin123#' --org-name DetectionLab
     fleetctl login --email admin@detectionlab.network --password 'admin123#'
 
     # Set the enrollment secret to match what we deploy to Windows hosts
@@ -338,10 +340,10 @@ install_fleet_import_osquery_config() {
 
     # Don't log osquery INFO messages
     # Fix snapshot event formatting
-    fleetctl get options >/tmp/options.yaml
-    /usr/bin/yq w -i /tmp/options.yaml 'spec.config.options.enroll_secret' 'enrollmentsecret'
-    /usr/bin/yq w -i /tmp/options.yaml 'spec.config.options.logger_snapshot_event_type' 'true'
-    fleetctl apply -f /tmp/options.yaml
+    fleetctl get config >/tmp/config.yaml
+    /usr/bin/yq eval -i '.spec.agent_options.config.options.enroll_secret = "enrollmentsecret"' /tmp/config.yaml
+    /usr/bin/yq eval -i '.spec.agent_options.config.options.logger_snapshot_event_type = true' /tmp/config.yaml
+    fleetctl apply -f /tmp/config.yaml
 
     # Use fleetctl to import YAML files
     fleetctl apply -f osquery-configuration/Fleet/Endpoints/MacOS/osquery.yaml
